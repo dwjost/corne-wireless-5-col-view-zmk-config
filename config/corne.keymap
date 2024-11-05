@@ -8,71 +8,179 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define CORNE_QWERTY       0
+#define CORNE_COLEMAK_DH   1
+#define CORNE_KEYPAD       2
+#define CORNE_FUNCTION     3
+#define CORNE_NAV          4
+#define CORNE_DEF_MOD      5
 
-#define AS(keycode) &as LS(keycode) keycode
+#define DEFAULT            CORNE_QWERTY
+
+#define TD_HM_TAP_TERM     175
+#define TD_Z_TAP_TERM      250
+#define HM_TAP_TERM        200
+#define HM_QUICK_TAP_TERM  150
+#define HM_REQUIRE_IDLE_MS 125
+#define TD_CW_TAP_TERM     300
 
 / {
+    behaviors {
+
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_TERM>;
+            quick_tap_ms = <HM_QUICK_TAP_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_MS>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        td_hm_j: tap_dance_hm_j_shift {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&hm RSHIFT J>, <&kp J>;
+        };
+
+        td_hm_k: tap_dance_hm_k_alt {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <HM_TAP_TERM>;
+            bindings = <&hm RALT K>, <&kp K>;
+        };
+
+        td_hm_l: tap_dance_hm_l_gui {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&hm RGUI L>, <&kp L>;
+        };
+
+        td_v: tap_dance_v_shift_v {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&kp V>, <&kp LS(V)>;
+        };
+
+        td_z: tap_dance_z_ctrl_z {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_Z_TAP_TERM>;
+            bindings = <&lt CORNE_KEYPAD Z>, <&kp RC(Z)>;
+        };
+
+        td_q_esc: tap_dance_q_escape {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&kp Q>, <&kp ESC>;
+        };
+
+        td_qwerty: tap_dance_to_qwerty {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&none>, <&to DEFAULT>;
+        };
+
+        td_corne_q: tap_dance_to_corne_qwerty {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&kp GRAVE>, <&to CORNE_QWERTY>;
+        };
+
+        td_corne_c: tap_dance_to_corne_colemak {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&kp GRAVE>, <&to CORNE_COLEMAK_DH>;
+        };
+
+        td_corne_cw_nav: tap_dance_caps_corne {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_CW_TAP_TERM>;
+            bindings = <&mo CORNE_NAV>, <&caps_word>;
+        };
+    };
+
+
     chosen {
       zmk,matrix_transform = &five_column_transform;
     };
 
-    behaviors {
-        as: auto_shift {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping_term_ms = <200>;
-            quick_tap_ms = <0>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-    };
         keymap {
                 compatible = "zmk,keymap";
 
                 default_layer {
-// -----------------------------------------------------------------------------------------
-// |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U   |  I   |  O   | P |
-// |  A  |  S  |  D  |  F  |  G  |     |  H  |  J   |  K   |  L   | ' | 
-// |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M   | CTRL | META | . |
-//             | GUI | LWR | SPC |     | ENT | RSE  | BSPC |
-                        display-name = "Base";
-                        bindings = <
-   AS(Q) AS(W) AS(E) AS(R) AS(T)     AS(Y)   AS(U)  AS(I)     AS(O)     AS(P)
-   AS(A) AS(S) AS(D) AS(F) AS(G)     AS(H)   AS(J)  AS(K)     AS(L)     AS(SQT)
-   AS(Z) AS(X) AS(C) AS(V) AS(B)     AS(N)   AS(M)  &kp LCTL  &kp RALT  AS(DOT)
-        &kp LGUI &mo 1 &kp SPACE     AS(RET) &mo 2  &kp BSPC
-                        >;
-                };
+                display-name = "Qwerty";
+            bindings = <
+&kp Q               &kp W                &kp E                &kp R             &kp T                  &kp Y                &kp U      &kp I                &kp  O                 &kp P
+&hm LCTRL A         &hm LGUI S           &hm LALT D           &hm LSHIFT F      &kp G                  &kp H                &td_hm_j   &td_hm_k             &td_hm_l               &hm RCTRL SEMI
+&td_z               &lt CORNE_DEF_MOD X  &lt CORNE_NAV C      &td_v             &kp B                  &kp N                &kp M      &lt CORNE_NAV COMMA  &lt CORNE_DEF_MOD DOT  &lt CORNE_KEYPAD FSLH
+                                         &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
+ >;
+        };
 
-                lower_layer {
+        corne_colemak_dh {
+            display-name = "Colemak";
+            bindings = <
+&kp Q              &kp W                &kp F            &kp P             &kp B                  &kp J                &kp L         &kp U           &kp Y          &kp SEMI
+&hm LCTRL A        &hm LGUI R           &hm LALT S       &hm LSHIFT T      &kp G                  &kp M                &kp N         &kp E           &kp  I         &kp O
+&td_z              &lt CORNE_DEF_MOD X  &lt CORNE_NAV C  &kp D             &kp V                  &kp K                &hm RSHIFT H  &hm RALT COMMA  &hm  RGUI DOT  &hm RCTRL FSLH
+                                        &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
+>;
+        };
+
+        corne_layer_keypad {
+            display-name = "Keypad";
+             bindings = <
+&kp N1           &kp N2          &kp N3          &kp N4           &kp N5     &kp N6           &kp N7          &kp N8          &kp N9           &kp N0
+&hm LCTRL DQT    &hm LGUI TILDE  &hm LALT GRAVE  &hm LSHIFT LBRC  &kp LBKT   &hm RSHIFT RBKT  &hm RALT RBRC   &hm RGUI MINUS  &hm RCTRL UNDER  &kp SQT
+&trans           &none           &none           &kp PIPE         &kp BSLH   &kp FSLH         &kp EQUAL       &kp COMMA       &kp DOT          &trans
+                                 &kp DEL         &kp LSHIFT       &none      &none            &hm RSHIFT ESC  &kp TAB
+>;
+};
+
+corne_layer_fn {
+    display-name = "Fuction";
+    bindings = <
+&kp F1   &kp F2   &kp F3   &kp F4        &kp F5       &kp F6    &kp F7      &kp F8     &kp F9     &kp F10
+&kp F11  &kp F12  &none    &kp C_VOL_UP  &kp C_PLAY   &kp LEFT  &kp DOWN    &kp UP     &kp RIGHT  &none
+&none    &none    &trans   &kp C_VOL_DN  &kp INS      &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &none
+                  &kp DEL  &kp LSHIFT    &none        &kp ESC   &kp RSHIFT  &kp TAB
+                     >;
+};
+
+corne_layer_nav {
+    display-name = "Nav";
+    bindings = <
+&kp LG(N1)  &kp LG(N2)  &kp LG(N3)  &kp LG(N4)    &kp LG(N5)   &kp LG(N6)  &kp LG(N7)  &kp LG(N8)  &kp LG(N9)  &kp LG(N0)
+&kp LCTRL   &kp LGUI    &kp LALT    &kp C_VOL_UP  &kp C_PLAY   &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &none
+&none       &none       &none       &kp C_VOL_DN  &kp INS      &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &none
+                        &kp DEL     &kp LSHIFT    &none        &kp ESC     &kp RSHIFT  &kp TAB
+                     >;
+        };
+
+                corne_mod_layer {
 // -----------------------------------------------------------------------------------------
 // | !     |  @  |  #  |  $  |  %  |     |  ^  |  &  |  *  |  (  |  )  |
 // | BT1   | BT2 | BT3 | BT4 | BT5 |     | LFT | DWN |  UP | RGT |     |
 // | BTCLR |     |     |     |     |     |     |     |     |     |     |
 //               | GUI |     | SPC |     | ENT | ESC | TAB |
-                        display-name = "Lower";
+                        display-name = "Mod";
                         bindings = <
    &kp EXCL     &kp AT       &kp HASH     &kp DLLR     &kp PRCNT        &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR  &kp RPAR
    &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4     &kp LEFT  &kp DOWN  &kp UP          &kp RIGHT &trans 
    &bt BT_CLR   &trans       &trans       &trans       &trans           &trans    &trans    &trans          &trans    &trans 
-                             &kp LGUI     &trans       &kp SPACE        AS(RET)   &kp ESC   &kp TAB
+                             &kp LGUI     &trans       &kp SPACE        &kp RET   &kp ESC   &kp TAB
                         >;
                 };
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// | 1! |  2@ |  3# |  4$ |  5% |     |  6^ |  7& |  8* |  9(  |  0)  |
-// | -_ |  =+ |  {  |  [  |  (  |     |  )  |  ]  |  }  |  /?  |  \|  |
-// | `~ |     |     |  ,< |  :  |     |  ;  |  .> | CTRL| META |      |
-//            | GUI | ESC | SPC |     | ENT |     | TAB |
-                        display-name = "Raise";
-                        bindings = <
-
-   AS(N1)    AS(N2)    AS(N3)    AS(N4)    AS(N5)        AS(N6)    AS(N7)    AS(N8)    AS(N9)   AS(N0)
-   AS(MINUS) AS(EQUAL) &kp LBRC  &kp LBKT  &kp LPAR      &kp RPAR  &kp RBKT  &kp RBRC  AS(FSLH) AS(BSLH)
-   AS(GRAVE) &trans    &trans    AS(COMMA) &kp COLON     &kp SEMI  AS(DOT)   &kp LCTRL &kp RALT &trans
-                       &kp LGUI  &kp ESC   &kp SPACE     AS(RET)   &trans    &kp TAB
-                        >;
-                };
         };
 };
