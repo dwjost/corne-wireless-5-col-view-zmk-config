@@ -130,6 +130,7 @@
         corne_colemak_dh {
             display-name = "Colemak";
             bindings = <
+&td_corne_q        &kp W                &kp F            &kp P             &kp B                  &kp J                &kp L         &kp U           &kp Y          &kp SEMI
 &hm LCTRL A        &hm LGUI R           &hm LALT S       &hm LSHIFT T      &kp G                  &kp M                &kp N         &kp E           &kp  I         &kp O
 &td_z              &lt CORNE_DEF_MOD X  &lt CORNE_NAV C  &kp D             &kp V                  &kp K                &hm RSHIFT H  &hm RALT COMMA  &hm  RGUI DOT  &hm RCTRL FSLH
                                         &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
@@ -162,7 +163,7 @@ corne_layer_nav {
 &kp LG(N1)  &kp LG(N2)  &kp LG(N3)    &kp LG(N4)    &kp LG(N5)   &kp LG(N6)  &kp LG(N7)  &kp LG(N8)  &kp LG(N9)  &kp LG(N0)
 &kp LCTRL   &kp LGUI    &kp LALT      &kp LSHIFT    &kp C_PLAY   &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT   &none
 &none       &none       &kp C_VOL_DN  &kp C_VOL_UP  &kp INS      &kp HOME    &kp PG_DN   &kp PG_UP   &kp END     &none
-                        &kp DEL       &kp LSHIFT    &none        &kp ESC     &kp RSHIFT  &kp TAB
+                        &kp LSHIFT    &kp DEL       &none        &kp ESC     &kp TAB     &kp RSHIFT
                      >;
         };
 
