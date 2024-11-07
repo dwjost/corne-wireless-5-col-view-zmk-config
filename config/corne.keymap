@@ -91,14 +91,14 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TD_HM_TAP_TERM>;
-            bindings = <&kp GRAVE>, <&to CORNE_QWERTY>;
+            bindings = <&kp Q>, <&to CORNE_QWERTY>;
         };
 
         td_corne_c: tap_dance_to_corne_colemak {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TD_HM_TAP_TERM>;
-            bindings = <&kp GRAVE>, <&to CORNE_COLEMAK_DH>;
+            bindings = <&kp Q>, <&to CORNE_COLEMAK_DH>;
         };
 
         td_corne_cw_nav: tap_dance_caps_corne {
@@ -120,7 +120,7 @@
                 default_layer {
                 display-name = "Qwerty";
             bindings = <
-&kp Q               &kp W                &kp E                &kp R             &kp T                  &kp Y                &kp U      &kp I                &kp  O                 &kp P
+&td_corne_c         &kp W                &kp E                &kp R             &kp T                  &kp Y                &kp U      &kp I                &kp  O                 &kp P
 &hm LCTRL A         &hm LGUI S           &hm LALT D           &hm LSHIFT F      &kp G                  &kp H                &td_hm_j   &td_hm_k             &td_hm_l               &hm RCTRL SEMI
 &td_z               &lt CORNE_DEF_MOD X  &lt CORNE_NAV C      &td_v             &kp B                  &kp N                &kp M      &lt CORNE_NAV COMMA  &lt CORNE_DEF_MOD DOT  &lt CORNE_KEYPAD FSLH
                                          &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
@@ -130,7 +130,6 @@
         corne_colemak_dh {
             display-name = "Colemak";
             bindings = <
-&kp Q              &kp W                &kp F            &kp P             &kp B                  &kp J                &kp L         &kp U           &kp Y          &kp SEMI
 &hm LCTRL A        &hm LGUI R           &hm LALT S       &hm LSHIFT T      &kp G                  &kp M                &kp N         &kp E           &kp  I         &kp O
 &td_z              &lt CORNE_DEF_MOD X  &lt CORNE_NAV C  &kp D             &kp V                  &kp K                &hm RSHIFT H  &hm RALT COMMA  &hm  RGUI DOT  &hm RCTRL FSLH
                                         &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
