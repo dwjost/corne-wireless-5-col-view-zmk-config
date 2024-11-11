@@ -105,7 +105,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TD_CW_TAP_TERM>;
-            bindings = <&mo CORNE_NAV>, <&caps_word>;
+            bindings = <&lt CORNE_NAV SPACE>, <&caps_word>;
         };
     };
 
