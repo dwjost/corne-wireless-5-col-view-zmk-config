@@ -19,10 +19,15 @@
 
 #define TD_HM_TAP_TERM     175
 #define TD_Z_TAP_TERM      250
-#define HM_TAP_TERM        200
+#define HM_TAP_TERM        180
 #define HM_QUICK_TAP_TERM  150
 #define HM_REQUIRE_IDLE_MS 125
-#define TD_CW_TAP_TERM     300
+#define TD_CW_TAP_TERM     200
+#define LT_TAPPING_TERM    150
+
+&lt {
+    tapping-term-ms = <LT_TAPPING_TERM>;
+};
 
 / {
     behaviors {
@@ -123,7 +128,7 @@
 &td_corne_c         &kp W                &kp E                &kp R             &kp T                  &kp Y                &kp U      &kp I                &kp  O                 &kp P
 &hm LCTRL A         &hm LGUI S           &hm LALT D           &hm LSHIFT F      &kp G                  &kp H                &td_hm_j   &td_hm_k             &td_hm_l               &hm RCTRL SEMI
 &td_z               &lt CORNE_DEF_MOD X  &lt CORNE_NAV C      &td_v             &kp B                  &kp N                &kp M      &lt CORNE_NAV COMMA  &lt CORNE_DEF_MOD DOT  &lt CORNE_KEYPAD FSLH
-                                         &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
+                                         &kp BSPC         &lt CORNE_KEYPAD ESC           &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
  >;
         };
 
@@ -133,17 +138,17 @@
 &td_corne_q        &kp W                &kp F            &kp P             &kp B                  &kp J                &kp L         &kp U           &kp Y          &kp SEMI
 &hm LCTRL A        &hm LGUI R           &hm LALT S       &hm LSHIFT T      &kp G                  &kp M                &kp N         &kp E           &kp  I         &kp O
 &td_z              &lt CORNE_DEF_MOD X  &lt CORNE_NAV C  &kp D             &kp V                  &kp K                &hm RSHIFT H  &hm RALT COMMA  &hm  RGUI DOT  &hm RCTRL FSLH
-                                        &lt CORNE_KEYPAD ESC &kp BSPC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
+                                        &kp BSPC &lt CORNE_KEYPAD ESC          &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &lt CORNE_KEYPAD ESC
 >;
         };
 
         corne_layer_keypad {
             display-name = "Keypad";
              bindings = <
-&kp N1           &kp N2          &kp N3          &kp N4           &kp N5     &kp N6           &kp N7          &kp N8          &kp N9           &kp N0
-&hm LCTRL DQT    &hm LGUI TILDE  &hm LALT GRAVE  &hm LSHIFT LBRC  &kp LBKT   &hm RSHIFT RBKT  &hm RALT RBRC   &hm RGUI MINUS  &hm RCTRL UNDER  &kp SQT
-&trans           &none           &none           &kp PIPE         &kp BSLH   &kp FSLH         &kp EQUAL       &kp COMMA       &kp DOT          &trans
-                                 &kp DEL         &kp LSHIFT       &none      &none            &hm RSHIFT ESC  &kp TAB
+&kp N1           &kp N2          &kp N3          &kp N4           &kp N5      &kp N6           &kp N7          &kp N8          &kp N9           &kp N0
+&hm LCTRL DQT    &hm LGUI TILDE  &hm LALT GRAVE  &hm LSHIFT LBRC  &kp LBKT    &hm RSHIFT RBKT  &hm RALT RBRC   &hm RGUI MINUS  &hm RCTRL UNDER  &kp SQT
+&trans           &none           &none           &kp PIPE         &kp BSLH    &kp FSLH         &kp EQUAL       &kp COMMA       &kp DOT          &trans
+                                 &kp DEL         &trans           &kp LSHIFT  &none            &hm RSHIFT ESC  &kp TAB
 >;
 };
 
@@ -153,7 +158,7 @@ corne_layer_fn {
 &kp F1   &kp F2   &kp F3   &kp F4        &kp F5       &kp F6    &kp F7      &kp F8     &kp F9     &kp F10
 &kp F11  &kp F12  &none    &kp C_VOL_UP  &kp C_PLAY   &kp LEFT  &kp DOWN    &kp UP     &kp RIGHT  &none
 &none    &none    &trans   &kp C_VOL_DN  &kp INS      &kp HOME  &kp PG_DN   &kp PG_UP  &kp END    &none
-                  &kp DEL  &kp LSHIFT    &none        &kp ESC   &kp RSHIFT  &kp TAB
+                  &kp DEL  &kp LSHIFT    &kp LALT     &kp ESC   &kp RSHIFT  &kp TAB
                      >;
 };
 
