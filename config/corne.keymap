@@ -31,6 +31,10 @@
 };
 
 / {
+    chosen {
+        zmk,physical-layout = &foostan_corne_5col_layout;
+    };
+
     behaviors {
 
         hm: homerow_mods {
@@ -209,6 +213,18 @@ corne_layer_nav {
   &bt BT_CLR   &trans       &trans       &trans          &msc SCRL_UP     &mm_ms_u  &mm_ms_l  &trans  &trans        &trans
                             &kp LGUI     &trans          &kp SPACE        &mkp LCLK &mkp RCLK &kp TAB
                         >;
+                };
+
+                extra_1 {
+                        status = "reserved";
+                };
+
+                extra_2 {
+                        status = "reserved";
+                };
+
+                extra_3 {
+                        status = "reserved";
                 };
         };
 };
