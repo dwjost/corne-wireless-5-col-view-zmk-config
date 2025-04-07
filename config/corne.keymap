@@ -23,8 +23,8 @@
 #define HM_TAP_TERM        180
 #define HM_QUICK_TAP_TERM  150
 #define HM_REQUIRE_IDLE_MS 125
-#define TD_CW_TAP_TERM     200
-#define LT_TAPPING_TERM    150
+#define TD_CW_TAP_TERM     190
+#define LT_TAPPING_TERM    100
 
 &lt {
     tapping-term-ms = <LT_TAPPING_TERM>;
@@ -44,7 +44,7 @@
             tapping-term-ms = <HM_TAP_TERM>;
             quick_tap_ms = <HM_QUICK_TAP_TERM>;
             require-prior-idle-ms = <HM_REQUIRE_IDLE_MS>;
-            flavor = "tap-preferred";
+            flavor = "hold-preferred";
             bindings = <&kp>, <&kp>;
         };
 
