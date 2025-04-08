@@ -45,6 +45,7 @@
             quick_tap_ms = <HM_QUICK_TAP_TERM>;
             require-prior-idle-ms = <HM_REQUIRE_IDLE_MS>;
             flavor = "hold-preferred";
+            flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
 
