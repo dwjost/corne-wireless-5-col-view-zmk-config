@@ -174,10 +174,10 @@
         corne_layer_keypad {
             display-name = "Keypad";
              bindings = <
-  &kp N1           &kp N2          &kp N3          &kp N4           &kp N5      &kp N6           &kp N7          &kp N8          &kp N9           &kp N0
-  &hm ESC   DQT    &hm LGUI TILDE  &hm LALT GRAVE  &hm LSHIFT LBRC  &kp LBKT    &hm RSHIFT RBKT  &hm RALT RBRC   &hm RGUI MINUS  &hm RCTRL UNDER  &kp SQT
-  &trans           &kp X           &none           &kp PIPE         &kp BSLH    &kp FSLH         &kp EQUAL       &kp COMMA       &kp DOT          &trans
-                                   &kp DEL         &trans           &kp LSHIFT  &none            &hm RSHIFT ESC  &kp TAB
+  &kp N1           &kp N2          &kp N3          &kp N4           &kp N5      &kp N6    &kp N7           &kp N8          &kp N9          &kp N0
+  &hm ESC   DQT    &hm LGUI TILDE  &hm LALT GRAVE  &hm LSHIFT LBRC  &kp LBKT    &kp RBKT  &hm RSHIFT RBRC  &hm RALT MINUS  &hm RGUI UNDER  &hm RCTRL SQT
+  &trans           &kp X           &none           &kp PIPE         &kp BSLH    &kp FSLH  &kp EQUAL        &kp COMMA       &kp DOT         &trans
+                                   &kp DEL         &trans           &kp LSHIFT  &none     &hm RSHIFT ESC   &kp TAB
 >;
 };
 
