@@ -24,7 +24,7 @@
 #define HM_QUICK_TAP_TERM  150
 #define HM_REQUIRE_IDLE_MS 125
 #define TD_CW_TAP_TERM     190
-#define LT_TAPPING_TERM    100
+#define LT_TAPPING_TERM    150
 
 &lt {
     tapping-term-ms = <LT_TAPPING_TERM>;
