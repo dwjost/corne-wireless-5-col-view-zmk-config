@@ -20,8 +20,21 @@
 
 #define TD_HM_TAP_TERM     175
 #define TD_Z_TAP_TERM      250
-#define HM_TAP_TERM        180
-#define HM_QUICK_TAP_TERM  150
+#define HM_TAP_TERM          180
+#define HM_TAP_2_TERM        190
+#define HM_TAP_3_TERM        190
+#define HM_TAP_4_TERM        200
+#define HM_TAP_5_TERM        250
+#define HM_QUICK_TAP_TERM    150
+#define HM_QUICK_TAP_2_TERM  150
+#define HM_QUICK_TAP_3_TERM  150
+#define HM_QUICK_TAP_4_TERM  150
+#define HM_QUICK_TAP_5_TERM  150
+#define HM_REQUIRE_IDLE_MS   125
+#define HM_REQUIRE_IDLE_2_MS 125
+#define HM_REQUIRE_IDLE_3_MS 125
+#define HM_REQUIRE_IDLE_4_MS 125
+#define HM_REQUIRE_IDLE_5_MS 125
 #define HM_REQUIRE_IDLE_MS 125
 #define TD_CW_TAP_TERM     190
 #define LT_TAPPING_TERM    150
@@ -45,6 +58,46 @@
             quick_tap_ms = <HM_QUICK_TAP_TERM>;
             require-prior-idle-ms = <HM_REQUIRE_IDLE_MS>;
             flavor = "hold-preferred";
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
+        hm2: homerow_mods_2 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_2_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_2_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_2_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
+        hm3: homerow_mods_3 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_3_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_3_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_3_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
+        hm4: homerow_mods_4 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_4_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_4_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_4_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+
+        hm5: homerow_mods_5 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_5_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_5_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_5_MS>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
         };
@@ -154,19 +207,19 @@
         corne_colemak_dh {
             display-name = "Colemak";
             bindings = <
-  &td_q_esc          &kp W                &kp F                 &kp P                 &kp B                  &kp J                &kp L         &kp U           &kp Y          &kp SEMI
-  &hm LCTRL A        &hm LGUI R           &hm LALT S            &hm LSHIFT T          &kp G                  &kp M                &hm RSHIFT N  &hm RALT E      &hm RGUI I    &hm RCTRL O
-  &td_z              &lt CORNE_DEF_MOD X  &lt CORNE_FUNCTION C  &kp D                 &kp V                  &kp K                &hm RSHIFT H  &hm RALT COMMA  &hm  RGUI DOT  &hm RCTRL FSLH
-                                                     &kp BSPC              &mo CORNE_KEYPAD      &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &mo CORNE_KEYPAD
+  &td_q_esc          &kp W                &kp F                 &kp P                 &kp B                  &kp J                &kp L          &kp U             &kp Y          &kp SEMI
+  &hm5 LCTRL A       &hm4 LGUI R          &hm3 LALT S           &hm2 LSHIFT T         &kp G                  &kp M                &hm2 RSHIFT N  &hm3 RALT E       &hm4 RGUI I    &hm5 RCTRL O
+  &td_z              &lt CORNE_DEF_MOD X  &lt CORNE_FUNCTION C  &kp D                 &kp V                  &kp K                &kp H          &kp COMMA         &kp DOT        &kp FSLH
+                                          &kp BSPC              &mo CORNE_KEYPAD      &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE      &mo CORNE_KEYPAD
 >;
         };
 
         qwerty_layer {
                 display-name = "Qwerty";
             bindings = <
-  &td_q_esc           &kp W                &kp E                 &kp R                 &kp T                  &kp Y                &kp U      &kp I                &kp  O                 &kp P
-  &hm LCTRL A         &hm LGUI S           &hm LALT D            &hm LSHIFT F          &kp G                  &kp H                &td_hm_j   &td_hm_k             &td_hm_l               &hm RCTRL SEMI
-  &td_z               &lt CORNE_DEF_MOD X  &lt CORNE_FUNCTION C  &td_v                 &kp B                  &kp N                &kp M      &lt CORNE_NAV COMMA  &lt CORNE_DEF_MOD DOT  &lt CORNE_KEYPAD FSLH
+  &td_q_esc           &kp W                &kp E                 &kp R                 &kp T                  &kp Y                &kp U      &kp I             &kp  O    &kp P
+  &hm5 LCTRL A        &hm4 LGUI S          &hm3 LALT D           &hm2 LSHIFT F         &kp G                  &kp H                &td_hm_j   &td_hm_k          &td_hm_l  &hm5 RCTRL SEMI
+  &td_z               &lt CORNE_DEF_MOD X  &lt CORNE_FUNCTION C  &td_v                 &kp B                  &kp N                &kp M      &kp COMMA         &kp DOT   &kp FSLH
                                            &kp BSPC              &mo CORNE_KEYPAD      &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &mo CORNE_KEYPAD
  >;
         };
