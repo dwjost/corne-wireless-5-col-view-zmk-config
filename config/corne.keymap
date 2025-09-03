@@ -8,6 +8,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/pointing.h>
+#include "zmk-helpers/key-labels/36.h"
 
 #define CORNE_COLEMAK_DH   0
 #define CORNE_QWERTY       1
@@ -39,6 +40,16 @@
 #define TD_CW_TAP_TERM     190
 #define LT_TAPPING_TERM    150
 
+#define KEYS_L LT0 LT1 LT2 LT3 LT4 \
+               LM0 LM1 LM2 LM3 LM4 \
+               LB0 LB1 LB2 LB3 LB4  // Left-hand keys.
+
+#define KEYS_R RT0 RT1 RT2 RT3 RT4 \
+               RM0 RM1 RM2 RM3 RM4 \
+               RB0 RB1 RB2 RB3 RB4  // Right-hand keys.
+
+#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2  // Thumb keys.
+
 &lt {
     tapping-term-ms = <LT_TAPPING_TERM>;
 };
@@ -61,7 +72,7 @@
             bindings = <&kp>, <&kp>;
         };
 
-        hm2: homerow_mods_2 {
+        hml2: homerow_mods_l_2 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <HM_TAP_2_TERM>;
@@ -69,9 +80,11 @@
             require-prior-idle-ms = <HM_REQUIRE_IDLE_2_MS>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
         };
 
-        hm3: homerow_mods_3 {
+        hml3: homerow_mods_l_3 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <HM_TAP_3_TERM>;
@@ -79,9 +92,11 @@
             require-prior-idle-ms = <HM_REQUIRE_IDLE_3_MS>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
         };
 
-        hm4: homerow_mods_4 {
+        hml4: homerow_mods_l_4 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <HM_TAP_4_TERM>;
@@ -89,9 +104,11 @@
             require-prior-idle-ms = <HM_REQUIRE_IDLE_4_MS>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
         };
 
-        hm5: homerow_mods_5 {
+        hml5: homerow_mods_l_5 {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <HM_TAP_5_TERM>;
@@ -99,29 +116,85 @@
             require-prior-idle-ms = <HM_REQUIRE_IDLE_5_MS>;
             flavor = "balanced";
             bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hmr2: homerow_mods_r_2 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_2_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_2_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_2_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hmr3: homerow_mods_r_3 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_3_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_3_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_3_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hmr4: homerow_mods_r_4 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_4_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_4_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_4_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hmr5: homerow_mods_r_5 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <HM_TAP_5_TERM>;
+            quick-tap-ms = <HM_QUICK_TAP_5_TERM>;
+            require-prior-idle-ms = <HM_REQUIRE_IDLE_5_MS>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        td_hm_a: tap_dance_hm_a_lctrl {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TD_HM_TAP_TERM>;
+            bindings = <&hm LCTRL A>, <&kp LC(A)>;
         };
 
         td_hm_j: tap_dance_hm_j_shift {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TD_HM_TAP_TERM>;
-            bindings = <&hm RSHIFT J>, <&kp J>;
+            bindings = <&hmr2 RSHIFT J>, <&kp J>;
         };
 
         td_hm_k: tap_dance_hm_k_alt {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <HM_TAP_TERM>;
-            bindings = <&hm RALT K>, <&kp K>;
+            bindings = <&hmr3 RALT K>, <&kp K>;
         };
 
         td_hm_l: tap_dance_hm_l_gui {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <TD_HM_TAP_TERM>;
-            bindings = <&hm RGUI L>, <&kp L>;
+            bindings = <&hmr4 RGUI L>, <&kp L>;
         };
-
         td_v: tap_dance_v_shift_v {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -207,7 +280,7 @@
             display-name = "Colemak";
             bindings = <
   &td_q_esc          &kp W                &kp F                 &kp P                 &kp B                  &kp J                &kp L          &kp U             &kp Y          &kp SEMI
-  &hm5 LCTRL A       &hm4 LGUI R          &hm3 LALT S           &hm2 LSHIFT T         &kp G                  &kp M                &hm2 RSHIFT N  &hm3 RALT E       &hm4 RGUI I    &hm5 RCTRL O
+  &hml5 LCTRL A      &hml4 LGUI R         &hml3 LALT S          &hml2 LSHIFT T        &kp G                  &kp M                &hmr2 RSHIFT N &hmr3 RALT E      &hmr4 RGUI I   &hmr5 RCTRL O
   &td_z              &lt CORNE_DEF_MOD X  &lt CORNE_FUNCTION C  &kp D                 &kp V                  &kp K                &kp H          &kp COMMA         &kp DOT        &kp FSLH
                                           &kp BSPC              &mo CORNE_KEYPAD      &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE      &mo CORNE_KEYPAD
 >;
@@ -217,7 +290,7 @@
                 display-name = "Qwerty";
             bindings = <
   &td_q_esc           &kp W                &kp E                 &kp R                 &kp T                  &kp Y                &kp U      &kp I             &kp  O    &kp P
-  &hm5 LCTRL A        &hm4 LGUI S          &hm3 LALT D           &hm2 LSHIFT F         &kp G                  &kp H                &td_hm_j   &td_hm_k          &td_hm_l  &hm5 RCTRL SEMI
+  &hml5 LCTRL A       &hml4 LGUI S         &hml3 LALT D          &hml2 LSHIFT F        &kp G                  &kp H                &td_hm_j   &td_hm_k          &td_hm_l  &hmr5 RCTRL SEMI
   &td_z               &lt CORNE_DEF_MOD X  &lt CORNE_FUNCTION C  &td_v                 &kp B                  &kp N                &kp M      &kp COMMA         &kp DOT   &kp FSLH
                                            &kp BSPC              &mo CORNE_KEYPAD      &td_corne_cw_nav       &lt CORNE_NAV ENTER  &kp SPACE  &mo CORNE_KEYPAD
  >;
@@ -226,9 +299,9 @@
         corne_layer_keypad {
             display-name = "Keypad";
              bindings = <
-  &kp N1           &kp N2          &kp N3          &kp N4           &kp N5      &kp N6    &kp N7           &kp N8          &kp N9          &kp N0
-  &hm LCTRL DQT    &hm LGUI TILDE  &hm LALT GRAVE  &hm LSHIFT LBRC  &kp LBKT    &kp RBKT  &hm RSHIFT RBRC  &hm RALT MINUS  &hm RGUI UNDER  &hm RCTRL SQT
-  &trans           &kp X           &none           &kp PIPE         &kp BSLH    &kp FSLH  &kp EQUAL        &kp COMMA       &kp DOT         &trans
+  &kp N1             &kp N2            &kp N3            &kp N4             &kp N5      &kp N6    &kp N7             &kp N8            &kp N9            &kp N0
+  &hml5 LCTRL DQT    &hml4 LGUI TILDE  &hml3 LALT GRAVE  &hml2 LSHIFT LBRC  &kp LBKT    &kp RBKT  &hmr2 RSHIFT RBRC  &hmr3 RALT MINUS  &hmr4 RGUI UNDER  &hmr5 RCTRL SQT
+  &trans             &kp X             &none             &kp PIPE           &kp BSLH    &kp FSLH  &kp EQUAL          &kp COMMA         &kp DOT           &trans
                                    &kp DEL         &trans           &kp LSHIFT  &none     &hm RSHIFT ESC   &kp TAB
 >;
 };
